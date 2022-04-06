@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "calendarios",
+  "info": {
+    "singularName": "calendario",
+    "pluralName": "calendarios",
+    "displayName": "Calendário",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Categoria": {
+      "type": "enumeration",
+      "enum": [
+        "Provas",
+        "Eventos",
+        "Feriados"
+      ],
+      "required": true
+    },
+    "Turma": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::turma.turma",
+      "private": true,
+      "inversedBy": "Calendario"
+    },
+    "Evento": {
+      "type": "component",
+      "repeatable": true,
+      "component": "calendar.evento"
+    }
+  }
+}

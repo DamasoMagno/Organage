@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "horarios",
+  "info": {
+    "singularName": "horario",
+    "pluralName": "horarios",
+    "displayName": "Horario",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Dia": {
+      "type": "enumeration",
+      "enum": [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta"
+      ],
+      "required": true
+    },
+    "Materia": {
+      "displayName": "Materia",
+      "type": "component",
+      "repeatable": true,
+      "component": "materia.materia"
+    },
+    "Turma": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::turma.turma",
+      "private": true,
+      "inversedBy": "Horarios"
+    }
+  }
+}
