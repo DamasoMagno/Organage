@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  background-color: #F5F5F5;
-  padding: .8rem;
-  border-radius: .25rem;
-  border: 1px solid #F5F5F5;
-  transition: .25s;
+  background-color: #f5f5f5;
+  padding: 0.8rem;
+  border-radius: 0.25rem;
+  border: 1px solid #f5f5f5;
+  transition: 0.25s;
 
   &:focus-within {
     border: 1px solid rgb(66, 153, 225);
@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
 
   svg {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   input {
@@ -26,7 +26,7 @@ export const Container = styled.div`
     border: 0;
     font-size: 1.125rem;
     flex: 1;
-    color: rgba(0, 0, 0, .5);
+    color: rgba(0, 0, 0, 0.5);
 
     &::placeholder {
       color: #a9a9a9;
@@ -35,7 +35,7 @@ export const Container = styled.div`
 
   button {
     border: 0;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
     background-color: transparent;
   }
 `;

@@ -6,6 +6,7 @@ export default createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+    font-family: "Dosis", sans-serif;
   }
 
   body {
@@ -21,6 +22,7 @@ export default createGlobalStyle`
   }
 
   [disabled] {
+    opacity: .5;
     cursor: not-allowed;
   }
 `;

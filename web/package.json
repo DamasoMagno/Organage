@@ -8,20 +8,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.10.1",
+    "axios": "^0.27.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-modal": "^3.15.1",
+    "react-query": "^3.39.1",
     "react-router-dom": "^6.2.2",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.24",
     "@vitejs/plugin-react": "^1.0.7",
-    "autoprefixer": "^10.4.4",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23",
     "typescript": "^4.5.4",
     "vite": "^2.8.0"
   }
