@@ -7,7 +7,7 @@ export const Container = styled.div`
     justify-content: space-between;
 
     span {
-      color: ${(ctx) => ctx.theme.colors.primary};
+      color: ${(ctx) => ctx.theme.colors.blue[900]};
       font-size: 0.8rem;
     }
   }

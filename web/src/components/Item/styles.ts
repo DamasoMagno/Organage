@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { darken } from "polished";
 
 export const Container = styled.button`
   display: flex;
@@ -14,7 +13,7 @@ export const Container = styled.button`
 
   strong {
     font-size: 1rem;
-    color: ${(ctx) => ctx.theme.colors.secondText};
+    color: ${(ctx) => ctx.theme.colors.gray[700]};
   }
 
   & + button {
