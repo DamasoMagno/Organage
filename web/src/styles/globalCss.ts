@@ -5,12 +5,16 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Dosis", sans-serif;
   }
 
   body {
+    background: #FFF;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body, input, button, textarea {
     font-family: 'Dosis', sans-serif;
+    font-weight: 400;
   }
 
   a {

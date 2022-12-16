@@ -1,26 +1,23 @@
 import styled from "styled-components";
+import { DefaultContainer } from "styles/defaultContainer";
 
-export const Container = styled.div``;
-
-export const CalendarContent = styled.main`
-  width: 90%;
-  height: 80vh;
-  margin: 2rem auto;
-  background-color: ${(ctx) => ctx.theme.colors.gray[600]};
-  border-radius: 4px;
-  padding: 1rem 1rem 1.5rem;
-
+export const Content = styled(DefaultContainer)`
   main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
-    .selectTypeEvent {
+    .categoryEvents {
       margin-top: 1rem;
+
+      h3 {
+        color: rgba(51, 51, 51, 0.5);
+        margin-bottom: .45rem;
+      }
 
       div {
         margin-top: 0.25rem;
-        height: 2.5rem;
+        height: 2rem;
         background-color: ${(ctx) => ctx.theme.colors.white[900]};
         display: flex;
         align-items: center;
@@ -36,7 +33,7 @@ export const CalendarContent = styled.main`
           width: 100%;
           appearance: none;
           background-color: transparent;
-          font-size: 1.125rem;
+          font-size: 0.875rem;
           height: 100%;
           border: 0;
           outline: 0;

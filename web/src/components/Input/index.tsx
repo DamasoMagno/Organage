@@ -1,18 +1,22 @@
-import { InputHTMLAttributes, ComponentType, useState, LegacyRef } from "react";
-import { IconBaseProps } from "react-icons";
-import { FiEyeOff, FiEye } from "react-icons/fi";
+import {
+  InputHTMLAttributes,
+  ReactNode,
+  useState,
+  LegacyRef
+} from "react";
+import { EyeClosed, Eye } from "phosphor-react";
 
 import { Container } from "./styles";
 
 interface InputProps
   extends InputHTMLAttributes<HTMLInputElement> {
-  icon?: ComponentType<IconBaseProps>;
-  inputRef?: LegacyRef<HTMLInputElement>
+  inputRef?: LegacyRef<HTMLInputElement>;
   isPassword?: boolean;
+  children?: ReactNode;
 }
 
 export function Input({
-  icon: Icon,
+  children,
   isPassword,
   inputRef,
   ...props
@@ -20,20 +24,21 @@ export function Input({
 ) {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
+  function togglePasswordToText() {
+    setPasswordIsVisible(!passwordIsVisible);
+  }
+
   return (
     <Container>
-      {Icon && <Icon size={18} />}
+      {children}
       <input
         type={isPassword && !passwordIsVisible ? "password" : "text"}
         {...props}
         ref={inputRef}
       />
       {isPassword &&
-        <button
-          type="button"
-          onClick={() => setPasswordIsVisible(!passwordIsVisible)}
-        >
-          {passwordIsVisible ? <FiEyeOff /> : <FiEye />}
+        <button type="button" onClick={togglePasswordToText}>
+          {passwordIsVisible ? <EyeClosed /> : <Eye />}
         </button>
       }
     </Container>

@@ -41,7 +41,7 @@ export const Form = styled.form`
   max-width: 500px;
   width: 100vw;
   margin: 0 auto;
-  height: 80%;
+  height: 70%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   background-color: ${(ctx) => ctx.theme.colors.white[900]};

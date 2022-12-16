@@ -1,15 +1,7 @@
+import { DefaultContainer } from "styles/defaultContainer";
 import styled from "styled-components";
 
-export const Container = styled.div``;
-
-export const ScheduleContent = styled.main`
-  width: 90%;
-  height: 80vh;
-  margin: 2rem auto;
-  background-color: ${(ctx) => ctx.theme.colors.gray[700]};
-  border-radius: 4px;
-  padding: 1rem 1rem 1.5rem;
-
+export const Content = styled(DefaultContainer)`
   main {
     display: flex;
     flex-direction: column;
@@ -38,6 +30,10 @@ export const ScheduleContent = styled.main`
         border: 0;
         outline: 0;
       }
+    }
+
+    div {
+      margin-top: 1.5rem;
     }
   }
 `;

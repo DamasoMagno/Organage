@@ -1,31 +1,32 @@
 import { useState } from "react";
-import { MdClose } from "react-icons/md";
+import { X, List } from "phosphor-react";
 import { Link } from "react-router-dom";
-import { FiMenu } from "react-icons/fi";
 
 import { Container, Navigation } from "./styles";
 
 export function SideBar() {
   const [mobileScreenIsOpen, setMobileScreenIsOpen] = useState(false);
 
+  function openMenuInMobile() {
+    setMobileScreenIsOpen(true);
+  }
+
+  function closeMenuInMobile() {
+    setMobileScreenIsOpen(false);
+  }
+
   return (
     <Container>
       <div className="title">
         <h2>Organage.</h2>
-        <button
-          onClick={() => setMobileScreenIsOpen(true)}
-          className="openMenu"
-        >
-          <FiMenu size={24} />
+        <button onClick={openMenuInMobile} className="openMenu">
+          <List size={24} />
         </button>
       </div>
 
       <Navigation isActive={mobileScreenIsOpen}>
-        <button
-          onClick={() => setMobileScreenIsOpen(false)}
-          className="closeMenu"
-        >
-          <MdClose size={24} />
+        <button onClick={closeMenuInMobile} className="closeMenu">
+          <X size={24} />
         </button>
 
         <div>

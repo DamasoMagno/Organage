@@ -1,5 +1,4 @@
-import { Themes } from "@styles/Themes";
-import styled, { css, DefaultTheme, ThemeProps } from "styled-components";
+import styled, { css } from "styled-components";
 
 interface NavigationProps {
   isActive: boolean;
@@ -35,14 +34,13 @@ export const Navigation = styled.nav<NavigationProps>`
   margin-top: 2rem;
   display: none;
 
-  @media (max-width: 768px) {
     ${(props) => {
-      if (props.isActive) {
-        return css`
+    if (props.isActive) {
+      return css`
           margin-top: 0;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          justify-content: space-around;
           position: fixed;
           top: 0;
           background-color: ${(ctx) => ctx.theme.colors.white[900]};
@@ -62,8 +60,8 @@ export const Navigation = styled.nav<NavigationProps>`
             height: 100vh;
           }
         `;
-      }
-    }}
+    }
+  }
   }
 
   a {

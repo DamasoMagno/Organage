@@ -1,50 +1,50 @@
-import { MdArrowDropDown } from "react-icons/md";
+import { ArrowDown } from "phosphor-react";
 
-import { SideBar } from "@components/SideBar";
-import { Item as Event } from "@components/Item";
+import { SideBar } from "components/SideBar";
+import { Item as Event } from "components/Item";
 
-import { Container, CalendarContent } from "./styles";
+import { Content } from "./styles";
 
-type CalendarProps = {
-  onSetCalendarData(): void;
-}
-
-export function Calendar({ onSetCalendarData }: CalendarProps) {
+export function Calendar() {
   return (
-    <Container>
+    <>
       <SideBar />
 
-      <CalendarContent>
+      <Content>
         <header>
           <h2>Eventos</h2>
         </header>
 
         <main>
-          <div className="selectTypeEvent">
+          <div className="categoryEvents">
             <h3>Selecione a categoria</h3>
 
             <div>
               <select>
-                <option value="">Eventos</option>
-                <option value="">Provas</option>
+                <option>Eventos</option>
+                <option>Provas</option>
               </select>
 
-              <MdArrowDropDown />
+              <ArrowDown />
             </div>
           </div>
 
           <div>
-            <Event
-              label="Reunião Pais e Mestres"
-              onClick={onSetCalendarData}
-            />
-            <Event label="Reunião Pais e Mestres" />
-            <Event label="Reunião Pais e Mestres" />
-            <Event label="Reunião Pais e Mestres" />
-            <Event label="Reunião Pais e Mestres" />
+            <Event>
+              Reunião Pais e Mestres
+            </Event>
+            <Event>
+              Reunião Pais e Mestres
+            </Event>
+            <Event>
+              Reunião Pais e Mestres
+            </Event>
+            <Event>
+              Reunião Pais e Mestres
+            </Event>
           </div>
         </main>
-      </CalendarContent>
-    </Container>
+      </Content>
+    </>
   );
 }

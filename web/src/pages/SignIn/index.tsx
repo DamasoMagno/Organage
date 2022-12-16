@@ -1,7 +1,7 @@
-import { FiLock, FiMail } from "react-icons/fi";
+import { EnvelopeSimple, User } from "phosphor-react";
 
-import { Input } from "@components/Form/Input";
-import { Button } from "@components/Form/Button";
+import { Input } from "components/Input";
+import { Button } from "components/Button";
 
 import { Container, Description, Form } from "./styles";
 
@@ -20,18 +20,15 @@ export function SignIn() {
         <h2>Acessar Conta</h2>
 
         <div className="inputs">
-          <Input
-            placeholder="Nome"
-            icon={FiMail}
-            required
-            type="email"
-          />
-          <Input
-            placeholder="E-mail"
-            icon={FiLock}
-            required
-          />
-          <Button label="Entrar" />
+          <Input placeholder="Nome">
+            <User />
+          </Input>
+
+          <Input placeholder="E-mail" type="E-mail">
+            <EnvelopeSimple />
+          </Input>
+
+          <Button>Entrar</Button>
         </div>
       </Form>
     </Container>

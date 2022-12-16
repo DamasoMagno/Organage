@@ -6,6 +6,7 @@ export const Themes = {
     white: {
       900: "#FFFFFF",
       700: "#F5F5F5",
+      600: "#FAFAFA",
     },
     black: {
       900: "#000000",
