@@ -11,7 +11,7 @@ import { Queue } from "pages/Queue";
 import { Schedules } from "pages/Schedules";
 
 import GlobalStyles from "styles/globalCss";
-import { Themes } from "./styles/themes";
+import { Themes } from "styles/themes";
 
 export function App() {
   return (
