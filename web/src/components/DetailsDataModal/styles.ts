@@ -15,6 +15,18 @@ export const ModalContainer = styled(Modal.Content)`
   border-radius: 16px 16px 0 0;
   width: 100%;
 
+  @media(min-width: 728px){
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border-radius: 16px;
+
+    .bar {
+      display: none;
+    }
+  }
+
   .bar {
     background-color: #EEEEEE;
     height: 3px;

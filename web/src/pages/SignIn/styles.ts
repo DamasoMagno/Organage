@@ -46,6 +46,10 @@ export const Form = styled.form`
   border-top-right-radius: 16px;
   background-color: #FFF;
 
+  @media(min-width: 728px){
+    border-radius: 16px;
+  }
+
   h2 {
     color: #00A3FF;
     font-weight: bold;

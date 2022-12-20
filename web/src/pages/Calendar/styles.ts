@@ -41,9 +41,8 @@ export const Content = styled(DefaultContainer)`
         }
 
         svg {
-          width: 1.125rem;
-          height: 1.12rem;
-          color: #FFF;
+          width: .85rem;
+          height: .85rem;
         }
       }
     }

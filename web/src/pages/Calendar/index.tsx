@@ -10,6 +10,29 @@ import { Content } from "./styles";
 export function Calendar() {
   const { setModal } = useModal();
 
+  const events = [
+    {
+      id: Math.random(),
+      name: "Treino Basquete",
+    },
+    {
+      id: Math.random(),
+      name: "Treino Basquete",
+    },
+    {
+      id: Math.random(),
+      name: "Treino Basquete",
+    },
+    {
+      id: Math.random(),
+      name: "Treino Basquete",
+    },
+    {
+      id: Math.random(),
+      name: "Treino Basquete",
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -34,21 +57,18 @@ export function Calendar() {
           </div>
 
           <div>
-            <Event onClick={() => setModal({ isOpen: true, type: "Calendar", id: "20" })}>
-              Reunião Pais e Mestres
-            </Event>
-            <Event onClick={() => setModal({ isOpen: true, type: "Calendar", id: "10" })}>
-              Reunião Pais e Mestres
-            </Event>
-            <Event>
-              Reunião Pais e Mestres
-            </Event>
-            <Event>
-              Reunião Pais e Mestres
-            </Event>
-            <Event>
-              Reunião Pais e Mestres
-            </Event>
+            {events.map(event => (
+              <Event
+                key={event.id}
+                onClick={() => setModal({
+                  isOpen: true,
+                  type: "Calendar",
+                  id: String(event.id)
+                })}
+              >
+                {event.name}
+              </Event>
+            ))}
           </div>
         </main>
       </Content>
