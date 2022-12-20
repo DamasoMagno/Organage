@@ -8,7 +8,7 @@ export const Overlay = styled(Modal.Overlay)`
 `;
 
 export const ModalContainer = styled(Modal.Content)`
-  background: ${props => props.theme.colors.white[900]};
+  background: #FFFF;
   padding: 2rem 1rem 3rem;
   bottom: 0;
   position: fixed;
@@ -36,7 +36,7 @@ export const Event = styled.div`
 
   .details {
     strong {
-      color: ${props => props.theme.colors.black};
+      color: #000;
       font-size: 1.15rem;
     }
 
@@ -60,7 +60,7 @@ export const Schedule = styled.div`
     strong {
       margin-top: 2rem;
       display: block;
-      color: ${props => props.theme.colors.blue[900]};
+      color: #00A3FF;
       font-size: 1.25rem;
     }
     

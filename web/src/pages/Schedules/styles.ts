@@ -10,7 +10,7 @@ export const Content = styled(DefaultContainer)`
     .selectTypeEvent {
       margin-top: 1rem;
       height: 2rem;
-      background-color: ${(ctx) => ctx.theme.colors.white[900]};
+      background-color: #FFF;
       display: flex;
       align-items: center;
       border-radius: 4px;
@@ -18,7 +18,7 @@ export const Content = styled(DefaultContainer)`
       border: 1px solid transparent;
 
       &:focus-within {
-        border-color: ${(ctx) => ctx.theme.colors.blue[900]};
+        border-color: #00A3FF;
       }
 
       select {

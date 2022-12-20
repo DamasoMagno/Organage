@@ -21,7 +21,7 @@ export const ClassPosition = styled.li<ClassPositionProps>`
 
   > span {
     font-size: 1rem;
-    color: ${props => !props.isOwnClass ? "#949494" :props.theme.colors.blue[900] };
+    color: ${props => !props.isOwnClass ? "#949494" : "#00A3FF" };
     font-weight: bold;
   }
 
@@ -35,8 +35,8 @@ export const ClassPosition = styled.li<ClassPositionProps>`
     padding: .5rem 1rem;
     border-radius: 8px;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, .15);
-    background-color: ${props => !props.isOwnClass ? props.theme.colors.white[900] : props.theme.colors.blue[900] };
-    color: ${props => !props.isOwnClass ? "#676767" : "white"};
+    background-color: ${props => !props.isOwnClass ? "#FFF" : "#00A3FF" };
+    color: ${props => !props.isOwnClass ? "#676767" : "#FFF" };
   }
 `;
 

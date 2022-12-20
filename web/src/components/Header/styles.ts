@@ -35,7 +35,7 @@ export const Navigation = styled.nav<NavigationProps>`
   flex-direction: column;
   justify-content: space-around;
   position: fixed;
-  background-color: ${(ctx) => ctx.theme.colors.white[900]};
+  background-color: #FFF;
   width: 100%;
   left: 0;
   height: 100%;

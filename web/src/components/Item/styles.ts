@@ -4,7 +4,7 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${(ctx) => ctx.theme.colors.white[900]};
+  background-color: #FAFAFA;
   padding: 0.75rem 0.5rem;
   border-radius: 4px;
   width: 100%;
@@ -15,7 +15,7 @@ export const Container = styled.button`
 
   strong {
     font-size: 1rem;
-    color: ${(ctx) => ctx.theme.colors.gray[700]};
+    color: #797979;
   }
 
   & + button {

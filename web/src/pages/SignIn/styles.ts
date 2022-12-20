@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: ${(ctx) => ctx.theme.colors.blue[900]};
+  background-color: #00A3FF;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,12 +20,12 @@ export const Description = styled.section`
   max-width: 500px;
 
   h1 {
-    color: ${(ctx) => ctx.theme.colors.white[900]};
+    color: #FFF;
     font-size: 1.85rem;
   }
 
   p {
-    color: ${(ctx) => ctx.theme.colors.white[700]};
+    color: #F5F5F5;
     font-size: 1.15rem;
     line-height: 1.5rem;
     margin-top: 0.85rem;
@@ -44,10 +44,10 @@ export const Form = styled.form`
   height: 70%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  background-color: ${(ctx) => ctx.theme.colors.white[900]};
+  background-color: #FFF;
 
   h2 {
-    color: ${(ctx) => ctx.theme.colors.blue[900]};
+    color: #00A3FF;
     font-weight: bold;
     margin-bottom: 3rem;
   }

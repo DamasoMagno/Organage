@@ -4,7 +4,7 @@ export const DefaultContainer = styled.main`
   width: 90%;
   height: 80vh;
   margin: 2rem auto;
-  background-color: ${(ctx) => ctx.theme.colors.white[600]};
+  background-color: #FAFAFA;
   border-radius: 4px;
   padding: 1rem 1rem 1.5rem;
 
