@@ -35,7 +35,9 @@ export const Container = styled.div`
 
   button {
     border: 0;
-    margin-left: 0.5rem;
     background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;

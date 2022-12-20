@@ -1,14 +1,18 @@
 import { ArrowDown } from "phosphor-react";
 
-import { SideBar } from "components/SideBar";
+import { useModal } from "contexts/useModal";
+
+import { Header } from "components/Header";
 import { Item as Event } from "components/Item";
 
 import { Content } from "./styles";
 
 export function Calendar() {
+  const { setModal } = useModal();
+
   return (
     <>
-      <SideBar />
+      <Header />
 
       <Content>
         <header>
@@ -30,7 +34,10 @@ export function Calendar() {
           </div>
 
           <div>
-            <Event>
+            <Event onClick={() => setModal({ isOpen: true, type: "Calendar", id: "20" })}>
+              Reunião Pais e Mestres
+            </Event>
+            <Event onClick={() => setModal({ isOpen: true, type: "Calendar", id: "10" })}>
               Reunião Pais e Mestres
             </Event>
             <Event>

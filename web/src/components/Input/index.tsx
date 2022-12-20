@@ -32,7 +32,7 @@ export function Input({
     <Container>
       {children}
       <input
-        type={isPassword && !passwordIsVisible ? "password" : "text"}
+        type={isPassword && passwordIsVisible ? "text" : "password"}
         {...props}
         ref={inputRef}
       />

@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const Description = styled.section`
   width: 90%;
-  margin: 1rem auto;
+  margin: 2rem auto 1rem;
   max-width: 500px;
 
   h1 {
@@ -58,7 +58,7 @@ export const Form = styled.form`
     flex-direction: column;
     gap: 0.85rem;
 
-    button {
+    > button {
       margin-top: 1rem;
     }
   }

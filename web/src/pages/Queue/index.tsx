@@ -1,11 +1,11 @@
-import { SideBar } from "components/SideBar";
+import { Header } from "components/Header";
 
 import { Content, ClassPosition } from "./styles";
 
 export function Queue() {
   return (
     <>
-      <SideBar />
+      <Header />
 
       <Content>
         <header>

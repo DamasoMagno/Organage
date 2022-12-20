@@ -1,4 +1,4 @@
-import { EnvelopeSimple, User } from "phosphor-react";
+import { EnvelopeSimple, Lock } from "phosphor-react";
 
 import { Input } from "components/Input";
 import { Button } from "components/Button";
@@ -20,12 +20,12 @@ export function SignIn() {
         <h2>Acessar Conta</h2>
 
         <div className="inputs">
-          <Input placeholder="Nome">
-            <User />
+          <Input placeholder="E-mail" type="email">
+            <EnvelopeSimple />
           </Input>
 
-          <Input placeholder="E-mail" type="E-mail">
-            <EnvelopeSimple />
+          <Input placeholder="Senha" isPassword>
+            <Lock />
           </Input>
 
           <Button>Entrar</Button>
