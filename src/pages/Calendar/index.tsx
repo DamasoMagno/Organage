@@ -9,10 +9,16 @@ import { Item as Event } from "components/Item";
 
 import { Content, Select } from "./styles";
 
+const mounths = [
+  "Janeiro", "Fervereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+  "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+]
+
 export function Calendar() {
   const { setModal } = useModal();
 
   const [currentDay, setCurrentDay] = useState(0);
+  const [mounth, setMounth] = useState(1);
 
   const openCalendarModal = () =>
     setModal({
@@ -21,9 +27,13 @@ export function Calendar() {
       id: String("")
     });
 
+  function findAndSetMounth(mounthSelected: string){
+    const findedMounth = mounths.findIndex(mounth => mounth === mounthSelected);
+    setMounth(findedMounth + 1);
+  }
+
   const currentYear = new Date().getFullYear();
-  const currentMounth = new Date().getMonth();
-  const daysLengthInAMount = new Date(currentYear, currentMounth, 0).getDate();
+  const daysLengthInAMount = new Date(currentYear, mounth, 0).getDate();
 
   return (
     <>
@@ -40,11 +50,17 @@ export function Calendar() {
 
             <div className="content">
               <Select>
-                <select id="date">
-                  <option>Janeiro</option>
-                  <option>Fervereiro</option>
-                  <option>Março</option>
-                  <option>Dezembro</option>
+                <select id="date" onChange={(e) => findAndSetMounth(e.target.value)}>
+                  {
+                    mounths.map(mounth => (
+                      <option
+                        key={mounth}
+                        value={mounth}
+                      >
+                        {mounth}
+                      </option>
+                    ))
+                  }
                 </select>
 
                 <CaretDown />
