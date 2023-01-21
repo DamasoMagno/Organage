@@ -1,11 +1,15 @@
-import { EnvelopeSimple, Lock } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
+import { Student } from "phosphor-react";
 
-import { Input } from "components/Input";
 import { Button } from "components/Button";
 
 import { Container, Description, Form } from "./styles";
 
+import googleIcon from "../../assets/Google.png";
+
 export function SignIn() {
+  const navigte = useNavigate();
+
   return (
     <Container>
       <Description>
@@ -14,22 +18,14 @@ export function SignIn() {
           Esta plataforma tem o objetivo de
           gerenciar  a organização interna da escola.
         </p>
+        <Student color="#FFF" size={48} />
       </Description>
 
       <Form>
-        <h2>Acessar Conta</h2>
-
-        <div className="inputs">
-          <Input placeholder="E-mail" type="email">
-            <EnvelopeSimple />
-          </Input>
-
-          <Input placeholder="Senha" isPassword>
-            <Lock />
-          </Input>
-
-          <Button>Entrar</Button>
-        </div>
+        <Button onClick={() => navigte("/calendar")}>
+          <img src={googleIcon} alt="Logotipo Google"/>
+          Login com Google
+        </Button>
       </Form>
     </Container>
   )

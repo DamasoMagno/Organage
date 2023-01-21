@@ -1,5 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import * as Modal from "@radix-ui/react-dialog";
+
+const openModal = keyframes`
+  0% {
+    bottom: -100%;
+  }
+
+  100% {
+    bottom: 0;
+  }
+`;
 
 export const Overlay = styled(Modal.Overlay)`
   position: fixed;
@@ -9,11 +19,30 @@ export const Overlay = styled(Modal.Overlay)`
 
 export const ModalContainer = styled(Modal.Content)`
   background: #FFFF;
-  padding: 2rem 1rem 3rem;
-  bottom: 0;
+  animation: ${openModal} .5s forwards;
+  font-family: "Droid Sans", sans-serif;
+  padding: 1rem 1rem 3rem;
   position: fixed;
   border-radius: 16px 16px 0 0;
   width: 100%;
+
+  .bar {
+    background-color: #EEEEEE;
+    height: 3px;
+    border-radius: 4px;
+    width: 96px;
+    height: 4px;
+    margin: 0 auto;
+  }
+
+  > div:last-child {
+    max-height: 300px;
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  } 
 
   @media(min-width: 728px){
     top: 50%;
@@ -26,72 +55,6 @@ export const ModalContainer = styled(Modal.Content)`
       display: none;
     }
   }
-
-  .bar {
-    background-color: #EEEEEE;
-    height: 3px;
-    border-radius: 4px;
-    width: 40%;
-    margin: 0 auto;
-  }
 `;
 
-export const Event = styled.div`
-  time {
-    font-size: .9rem;
-    color: #ABABAB;
-    margin: 1rem 0;
-    display: block;
-    text-align: right;
-    font-weight: bold;
-  }
 
-  .details {
-    strong {
-      color: #000;
-      font-size: 1.15rem;
-    }
-
-    span {
-      color: #5B5B5B;
-      font-size: 1rem;
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    p {
-      color: rgba(0, 0, 0, .85);
-      line-height: 1.5;
-      margin-top: .25rem;
-    }
-  }
-`;
-
-export const Schedule = styled.div`
-    strong {
-      margin-top: 2rem;
-      display: block;
-      color: #00A3FF;
-      font-size: 1.25rem;
-    }
-    
-    ul {
-      margin-top: .85rem;
-      list-style: none;
-
-      li {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        span {
-          color: #5B5B5B;
-          font-size: .85rem;
-          display: block;
-          margin-top: .85rem;
-          font-weight: bold;
-        }
-      }
-    }
-`;

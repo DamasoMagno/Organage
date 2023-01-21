@@ -1,4 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ApolloProvider } from "@apollo/client";
+
+import { client } from "libs/apollo";
 
 import { ModalProvider } from "contexts/useModal";
 
@@ -13,19 +16,21 @@ import GlobalStyles from "styles/globalCss";
 
 export function App() {
   return (
-    <ModalProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<SignIn />} path="/" />
-          <Route element={<Calendar />} path="/calendar" />
-          <Route element={<Queue />} path="/queue" />
-          <Route element={<Schedules />} path="/schedules" />
-        </Routes>
+    <ApolloProvider client={client}>
+      <ModalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<SignIn />} path="/" />
+            <Route element={<Calendar />} path="/calendar" />
+            <Route element={<Queue />} path="/queue" />
+            <Route element={<Schedules />} path="/schedules" />
+          </Routes>
 
-        <EventDetailtModal />
-        <GlobalStyles />
-      </BrowserRouter>
-    </ModalProvider>
+          <EventDetailtModal />
+          <GlobalStyles />
+        </BrowserRouter>
+      </ModalProvider>
+    </ApolloProvider>
   )
 }
 

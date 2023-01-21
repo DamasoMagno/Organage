@@ -14,7 +14,7 @@ export function Queue() {
 
         <main>
           <ClassPosition isOwnClass>
-            <span>2</span>
+            <span>1</span>
 
             <p className="class">
               <span>2º</span>

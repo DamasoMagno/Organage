@@ -23,9 +23,7 @@ interface ModalContextProps {
 export const ModalContext = createContext({} as ModalContextProps);
 
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [modal, setModal] = useState<Modal>(
-    { type: "Calendar", isOpen: false }
-  );
+  const [modal, setModal] = useState<Modal>({ type: "Calendar", isOpen: false });
 
   return (
     <ModalContext.Provider 

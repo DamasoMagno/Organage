@@ -8,7 +8,8 @@ export const Container = styled.aside`
   padding: 1rem 1.25rem;
   border-bottom: 0.5px solid rgba(51, 51, 51, 0.15);
 
-  div {
+  
+  .logo {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,7 +32,7 @@ export const Container = styled.aside`
 `;
 
 export const Navigation = styled.nav<NavigationProps>`
-  display: ${props => props.menuIsVisible ? "flex" : "none"};
+  display: ${props => props.menuIsVisible ? "flex": "none"};
   flex-direction: column;
   justify-content: space-around;
   position: fixed;
@@ -40,26 +41,38 @@ export const Navigation = styled.nav<NavigationProps>`
   left: 0;
   height: 100%;
 
-  a, button {
-    font-weight: 700;
-    text-align: center;
-    width: 100%;
-    font-size: 1.25rem;
-    color: #b2b2b2;
-    transition: all 0.2s;
-    position: relative;
 
-    & + a {
-      margin-top: 1rem;
-    }
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 
-    &:hover {
-      color: rgb(66, 153, 225);
+    a {
+      text-align: center;
+      width: 100%;
+      transition: all 0.2s;
+      position: relative;
+
+      &:hover {
+        color: rgb(66, 153, 225);
+      }
     }
   }
 
-  button {
-    background-color: transparent;
+
+  a, .logoutButton {
+    font-size: 1.25rem;
+    color: #b2b2b2;
+    font-weight: 600;
+  }
+
+
+  .logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     border: 0;
+    background: transparent;
   }
 `;

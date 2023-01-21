@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #00A3FF;
+  background: linear-gradient(157.47deg, #00A3FF 0%, #006AA6 100%);
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -16,8 +15,9 @@ export const Container = styled.div`
 
 export const Description = styled.section`
   width: 90%;
-  margin: 2rem auto 1rem;
+  margin: 8rem auto 0rem;
   max-width: 500px;
+  text-align: center;
 
   h1 {
     color: #FFF;
@@ -27,43 +27,30 @@ export const Description = styled.section`
   p {
     color: #F5F5F5;
     font-size: 1.15rem;
-    line-height: 1.5rem;
-    margin-top: 0.85rem;
+    line-height: 1.85rem;
+    margin-top: 0.75rem;
     width: 100%;
+  }
+
+  svg {
+    margin-top: 1.5rem;
   }
 `;
 
 export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 500px;
-  width: 100vw;
-  margin: 0 auto;
-  height: 70%;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  background-color: #FFF;
+  margin: 10rem auto 0;
+  max-width: 279px;
+  width: 80%;
 
-  @media(min-width: 728px){
-    border-radius: 16px;
-  }
-
-  h2 {
-    color: #00A3FF;
+  button {
+    width: 100%;
+    background-color: #FFF;
+    color: #333333;
     font-weight: bold;
-    margin-bottom: 3rem;
-  }
-
-  div.inputs {
-    width: 80%;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-
-    > button {
-      margin-top: 1rem;
-    }
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
   }
 `;

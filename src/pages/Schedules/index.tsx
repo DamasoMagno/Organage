@@ -5,8 +5,18 @@ import { Item as Schedule } from "components/Item";
 
 import { Content } from "./styles";
 
+const days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
+
 export function Schedules() {
   const { setModal } = useModal();
+
+  function openScheduleModal() {
+    setModal({
+      isOpen: true,
+      type: "Schedule",
+      id: String("")
+    });
+  }
 
   return (
     <>
@@ -19,13 +29,11 @@ export function Schedules() {
 
         <main>
           <div>
-            <Schedule onClick={() => setModal(
-              { isOpen: true, type: "Schedule" }
-            )}>Segunda</Schedule>
-            <Schedule>Terça</Schedule>
-            <Schedule>Quarta</Schedule>
-            <Schedule>Quinta</Schedule>
-            <Schedule>Sexta</Schedule>
+            {days.map((day, index) => (
+              <Schedule key={index} onClick={openScheduleModal}>
+                {day}
+              </Schedule>
+            ))}
           </div>
         </main>
       </Content>

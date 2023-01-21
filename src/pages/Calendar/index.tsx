@@ -1,37 +1,29 @@
-import { ArrowDown } from "phosphor-react";
+import { useState } from "react";
+import { CaretDown } from "phosphor-react";
 
 import { useModal } from "contexts/useModal";
+import { calendar } from "../../../database";
 
 import { Header } from "components/Header";
 import { Item as Event } from "components/Item";
 
-import { Content } from "./styles";
+import { Content, Select } from "./styles";
 
 export function Calendar() {
   const { setModal } = useModal();
 
-  const events = [
-    {
-      id: Math.random(),
-      name: "Treino Basquete",
-    },
-    {
-      id: Math.random(),
-      name: "Treino Basquete",
-    },
-    {
-      id: Math.random(),
-      name: "Treino Basquete",
-    },
-    {
-      id: Math.random(),
-      name: "Treino Basquete",
-    },
-    {
-      id: Math.random(),
-      name: "Treino Basquete",
-    },
-  ];
+  const [currentDay, setCurrentDay] = useState(0);
+
+  const openCalendarModal = () =>
+    setModal({
+      isOpen: true,
+      type: "Calendar",
+      id: String("")
+    });
+
+  const currentYear = new Date().getFullYear();
+  const currentMounth = new Date().getMonth();
+  const daysLengthInAMount = new Date(currentYear, currentMounth, 0).getDate();
 
   return (
     <>
@@ -43,29 +35,57 @@ export function Calendar() {
         </header>
 
         <main>
-          <div className="categoryEvents">
-            <h3>Selecione a categoria</h3>
+          <div className="day">
+            <label htmlFor="date">Selecionar Data</label>
 
-            <div>
-              <select>
+            <div className="content">
+              <Select>
+                <select id="date">
+                  <option>Janeiro</option>
+                  <option>Fervereiro</option>
+                  <option>Março</option>
+                  <option>Dezembro</option>
+                </select>
+
+                <CaretDown />
+              </Select>
+
+              <div className="daysQuantity">
+                {Array.from({ length: daysLengthInAMount }).map((_, index) => (
+                  <button
+                    onClick={() => setCurrentDay(index + 1)}
+                    className={
+                      currentDay === index + 1 ?
+                        "currentDay" :
+                        ""
+                    }
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="categoryEvents">
+            <label htmlFor="type">
+              Selecione a categoria
+            </label>
+
+            <Select>
+              <select id="type">
+                <option>Todos</option>
                 <option>Eventos</option>
                 <option>Provas</option>
               </select>
 
-              <ArrowDown />
-            </div>
+              <CaretDown />
+            </Select>
           </div>
 
           <div>
-            {events.map(event => (
-              <Event
-                key={event.id}
-                onClick={() => setModal({
-                  isOpen: true,
-                  type: "Calendar",
-                  id: String(event.id)
-                })}
-              >
+            {calendar.map(event => (
+              <Event key={event.id} onClick={openCalendarModal}>
                 {event.name}
               </Event>
             ))}

@@ -5,10 +5,10 @@ export const Container = styled.button`
   align-items: center;
   justify-content: space-between;
   background-color: #FFFF;
-  padding: 0.75rem 0.5rem;
+  padding: 0.75rem 0.75rem;
   border-radius: 4px;
   width: 100%;
-  height: 2.5rem;
+  height: 3rem;
   font-size: 0.93rem;
   border: 0;
   transition: filter 0.25s;

@@ -18,20 +18,22 @@ export const ClassPosition = styled.li<ClassPositionProps>`
   list-style: none;
   display: flex;
   align-items: center;
+  gap: .5rem;
 
   > span {
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: ${props => !props.isOwnClass ? "#949494" : "#00A3FF" };
     font-weight: bold;
   }
 
   .class {
-    margin-left: 0.5rem;
     width: 100%;
+    height: 3rem;
     display: flex;
     align-items: center;
-    font-size: 1.25rem;
-    justify-content: space-around;
+    justify-content: center;
+    gap: .85rem;
+    font-size: 1.15rem;
     padding: .5rem 1rem;
     border-radius: 8px;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, .15);
