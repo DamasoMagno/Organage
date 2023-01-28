@@ -5,24 +5,29 @@ import { useModal } from "contexts/useModal";
 import { Schedule } from "./Schedule";
 import { Calendar } from "./Calendar";
 
-import { Overlay, ModalContainer} from "./styles";
+import { Overlay, ModalContainer } from "./styles";
 
-export function EventDetailtModal() {
+export function EventDetailtModal({ id }: any) {
   const { modal, setModal } = useModal();
 
   function onOpenChangeModal() {
-    setModal({ isOpen: false });
+    setModal({ 
+      isOpen: false,
+      id: "",
+    });
   }
 
   return (
-    <Modal.Root open={modal.isOpen} onOpenChange={onOpenChangeModal}>
+    <Modal.Root
+      open={modal.isOpen}
+      onOpenChange={onOpenChangeModal}
+    >
       <Modal.Portal>
         <Overlay />
 
         <ModalContainer>
           <div className="bar" />
-          {
-            modal.type === "Calendar" ? 
+          {modal.type === "Calendar" ? 
             <Calendar /> : 
             <Schedule />
           }

@@ -6,9 +6,10 @@ import { Button } from "components/Button";
 import { Container, Description, Form } from "./styles";
 
 import googleIcon from "../../assets/Google.png";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function SignIn() {
-  const navigte = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -22,7 +23,7 @@ export function SignIn() {
       </Description>
 
       <Form>
-        <Button onClick={() => navigte("/calendar")}>
+        <Button onClick={() => navigate("/calendar")}>
           <img src={googleIcon} alt="Logotipo Google"/>
           Login com Google
         </Button>
