@@ -17,13 +17,14 @@ export const Overlay = styled(Modal.Overlay)`
   background: rgba(0, 0, 0, .25);
 `;
 
-export const ModalContainer = styled(Modal.Content)`
+export const Content = styled(Modal.Content)`
   background: #FFFF;
   animation: ${openModal} .5s forwards;
   font-family: "Droid Sans", sans-serif;
   padding: 1rem 1rem 3rem;
   position: fixed;
   border-radius: 16px 16px 0 0;
+  max-width: 500px;
   width: 100%;
 
   .bar {
@@ -48,7 +49,6 @@ export const ModalContainer = styled(Modal.Content)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
     border-radius: 16px;
 
     .bar {

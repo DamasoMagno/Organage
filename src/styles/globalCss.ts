@@ -1,4 +1,14 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, keyframes } from "styled-components";
+
+const closeModal = keyframes`
+  0% {
+    bottom: 0;
+  }
+
+  100% {
+    bottom: -100%
+  }
+`;
 
 export default createGlobalStyle`
   * {
@@ -23,10 +33,15 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 
-  [disabled] {
-    opacity: .5;
-    cursor: not-allowed;
+  .sc-hKwDye{
+    &[data-state='closed'] {
+      animation: ${closeModal} 1s ease-in;
+    }
   }
 `;

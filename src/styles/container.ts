@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DefaultContainer = styled.main`
+export const Container = styled.main`
   width: 90%;
   min-height: 80vh;
   margin: 2rem auto;

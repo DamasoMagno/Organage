@@ -1,20 +1,49 @@
 import { useNavigate } from "react-router-dom";
 import { Student } from "phosphor-react";
-
-import { Button } from "components/Button";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import { Container, Description, Form } from "./styles";
 
-import googleIcon from "../../assets/Google.png";
-import { useAuth0 } from "@auth0/auth0-react";
+import googleIcon from "assets/Google.png";
+import { auth } from "services/firebase";
+import { client } from "libs/apollo";
+import { GET_CLASS } from "graphql/queries/get-class";
+
+
+const googleProvider = new GoogleAuthProvider();
 
 export function SignIn() {
   const navigate = useNavigate();
 
+  async function login() {
+    try {
+      const data = await signInWithPopup(auth, googleProvider);
+
+      const { data: ownClass } = await client.query({
+        query: GET_CLASS,
+        variables: {
+          email: data.user.email
+        }
+      });
+
+      const className = ownClass.estudante.turma.nome;
+      const queueId = ownClass.estudante.turma.fila.id;
+
+      localStorage.setItem("@school", JSON.stringify({
+        className,
+        queueId
+      }));
+
+      navigate("/");
+    } catch (error) {
+      console.log("Testando!");
+    }
+  }
+
   return (
     <Container>
       <Description>
-        <h1>Organge</h1>
+        <h1>Organage.</h1>
         <p>
           Esta plataforma tem o objetivo de
           gerenciar  a organização interna da escola.
@@ -23,10 +52,10 @@ export function SignIn() {
       </Description>
 
       <Form>
-        <Button onClick={() => navigate("/calendar")}>
-          <img src={googleIcon} alt="Logotipo Google"/>
+        <button onClick={login} type="button">
+          <img src={googleIcon} alt="Logotipo Google" />
           Login com Google
-        </Button>
+        </button>
       </Form>
     </Container>
   )

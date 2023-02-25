@@ -5,35 +5,25 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 export const Description = styled.section`
   width: 90%;
   margin: 8rem auto 0rem;
-  max-width: 500px;
+  max-width: 300px;
   text-align: center;
 
   h1 {
     color: #FFF;
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
 
   p {
     color: #F5F5F5;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     line-height: 1.85rem;
-    margin-top: 0.75rem;
-    width: 100%;
-  }
-
-  svg {
-    margin-top: 1.5rem;
+    margin: 1rem 0 2rem;
+    width: 350px;
   }
 `;
 
@@ -43,11 +33,15 @@ export const Form = styled.form`
   width: 80%;
 
   button {
-    width: 100%;
     background-color: #FFF;
     color: #333333;
     font-weight: bold;
     width: 100%;
+    height: 2.75rem;
+    border-radius: 5px;
+    border: 0;
+    font-size: 1rem;
+
     display: flex;
     align-items: center;
     justify-content: center;

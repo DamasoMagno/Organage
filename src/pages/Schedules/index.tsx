@@ -1,60 +1,54 @@
 import { useEffect, useState } from "react";
-import CircleLoader from "react-spinners/CircleLoader";
-import { gql } from "@apollo/client";
+
+import { ISchedule } from "interfaces/ISchedule";
 
 import { client } from "libs/apollo";
-import { useModal } from "contexts/useModal";
+
+import { GET_SCHEDULES_DAYS } from "graphql/queries/get-schedule-days";
+import { GET_SCHEDULES } from "graphql/queries/get-schedules";
 
 import { Header } from "components/Header";
-import { Item as Schedule } from "components/Item";
+import { Options } from "components/Options";
 
-import { Content } from "./styles";
+import { Content, ScheduleList } from "./styles";
 
-const GET_SCHEDULES = gql`
-  query Horarios {
-    horarios {
-      id
-      dia
-    }
-  }
-`;
-
-interface Schedules {
-  id: string;
-  dia: string;
-}
 
 export function Schedules() {
-  const { setModal } = useModal();
+  const [schedules, setSchedules] = useState<ISchedule[]>([]);
+  const [scheduleDaySelected, setScheduleDaySelected] = useState<string>("Terca");
 
-  const [schedule, setSchedule] = useState<Schedules[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  
+
+  const [className, setClassName] = useState<string>(() => {
+    const school = JSON.parse(localStorage.getItem("@school") as string);
+    return !school ? {} : school.className;
+  });
+
   useEffect(() => {
     client.query({
-      query: GET_SCHEDULES,
+      query: GET_SCHEDULES_DAYS,
+      variables: {
+        nome_turma: className
+      }
     })
-      .then(({ data }) => {
-        console.log(data);
-        setSchedule(data.horarios)
-      })
-      .catch(data => console.log(data))
+      .then(({ data }) => setSchedules(data.horarios))
       .finally(() => setLoading(false))
   }, []);
 
+  useEffect(() => {
+    client.query({
+      query: GET_SCHEDULES,
+      variables: {
+        nome_turma: className,
+        dia: scheduleDaySelected
+      }
+    })
+      .then(({ data }) => setSchedules(data.horarios[0].materias))
+      .finally(() => setLoading(false))
+  }, [scheduleDaySelected]);
 
-  const openScheduleModal = (id: string) => {
-    setModal({
-      isOpen: true,
-      type: "Schedule",
-      id
-    });
-  }
-
-  if (loading) {
-    return <CircleLoader />
-  }
+  let scheduleDays = schedules.map(schedules => schedules.dia);
 
   return (
     <>
@@ -66,14 +60,34 @@ export function Schedules() {
 
         <main>
           <div>
-            {schedule.map((day: Schedules) => (
-              <Schedule
-                key={day.id}
-                onClick={() => openScheduleModal(day.id)}
-              >
-                {day.dia}
-              </Schedule>
-            ))}
+            <Options
+              values={scheduleDays}
+              onSelectValue={setScheduleDaySelected}
+              valueSelected={scheduleDaySelected}
+            />
+
+            <ScheduleList>
+              <li>
+                <strong>Matemática</strong>
+                <span>12:00</span>
+              </li>
+              <li>
+                <strong>Matemática</strong>
+                <span>12:00</span>
+              </li>
+              <li>
+                <strong>Matemática</strong>
+                <span>12:00</span>
+              </li>
+              <li>
+                <strong>Matemática</strong>
+                <span>12:00</span>
+              </li>
+              <li>
+                <strong>Matemática</strong>
+                <span>12:00</span>
+              </li>
+            </ScheduleList>
           </div>
         </main>
       </Content>

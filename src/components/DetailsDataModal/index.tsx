@@ -2,36 +2,28 @@ import * as Modal from "@radix-ui/react-dialog";
 
 import { useModal } from "contexts/useModal";
 
-import { Schedule } from "./Schedule";
 import { Calendar } from "./Calendar";
 
-import { Overlay, ModalContainer } from "./styles";
+import { Overlay, Content } from "./styles";
 
-export function EventDetailtModal({ id }: any) {
-  const { modal, setModal } = useModal();
+export function EventDetailtModal() {
+  const { state, dispatch } = useModal();
 
   function onOpenChangeModal() {
-    setModal({ 
-      isOpen: false,
-      id: "",
-    });
+    dispatch({ type: "CLOSE_MODAl" });
   }
 
+  const modalIsOpen = !!state.id;
+
   return (
-    <Modal.Root
-      open={modal.isOpen}
-      onOpenChange={onOpenChangeModal}
-    >
+    <Modal.Root open={modalIsOpen} onOpenChange={onOpenChangeModal}>
       <Modal.Portal>
         <Overlay />
 
-        <ModalContainer>
+        <Content>
           <div className="bar" />
-          {modal.type === "Calendar" ? 
-            <Calendar /> : 
-            <Schedule />
-          }
-        </ModalContainer>
+          <Calendar />
+        </Content>
       </Modal.Portal>
     </Modal.Root>
   );

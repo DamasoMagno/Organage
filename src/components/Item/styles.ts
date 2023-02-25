@@ -23,6 +23,6 @@ export const Container = styled.button`
   }
 
   &:hover {
-    filter: brightness(0.99);
+    filter: brightness(0.9);
   }
 `;

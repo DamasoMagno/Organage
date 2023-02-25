@@ -1,39 +1,29 @@
 import { useEffect, useState } from "react";
-import { gql } from "@apollo/client";
+import parse from "html-react-parser";
+
+import { useModal } from "contexts/useModal";
 
 import { client } from "libs/apollo";
 
+import { GET_EVENT_DETAILS } from "graphql/queries/get-event";
+
+import { IEvent } from "interfaces/IEvent";
+
 import { EventContent } from "./styles";
-import { useModal } from "contexts/useModal";
 
-const GET_EVENT_DETAILS = gql`
-  query Evento ($id: ID!) {
-    evento(where: {id: $id}) {
-      id
-      nome
-      descricao
-      createdAt
-    }
-  }
-`;
-
-interface Event {
-  id: string;
-  nome: string;
-  descricao: string;
-  createdAt: any;
-}
 
 export function Calendar() {
-  const { modal } = useModal();
+  const { state } = useModal();
 
-  const [event, setEvent] = useState({} as Event);
+  const [event, setEvent] = useState({} as IEvent);
 
   useEffect(() => {
+    if (!state.id) return;
+
     client.query({
       query: GET_EVENT_DETAILS,
       variables: {
-        id: String(modal.id)
+        id: String(state.id)
       }
     })
       .then(({ data }) => setEvent(data.evento))
@@ -48,7 +38,7 @@ export function Calendar() {
       </header>
 
       <span>Descrição</span>
-      <p>{event.descricao}</p>
+      {parse(event.descricao?.html ?? "")}
     </EventContent>
   );
 }

@@ -1,40 +1,47 @@
-import { 
-  createContext, 
-  ReactNode, 
-  useContext, 
-  useState 
-} from "react";
+import { createContext, ReactNode, useContext, useReducer } from "react";
+
+interface IModalReducerState {
+  id?: string;
+  category: string;
+}
+
+interface IModalReducerActions {
+  type: "OPEN_CALENDAR" | "CLOSE_MODAl";
+  payload?: {
+    id: string;
+  };
+}
+
+interface ModalContextProps {
+  dispatch: ({ type, payload }: IModalReducerActions) => void;
+  state: IModalReducerState;
+}
 
 interface ModalProviderProps {
   children: ReactNode;
 }
 
-type Modal = {
-  isOpen: boolean;
-  id?: string;
-  type?: "Calendar" | "Schedule";
-}
-
-interface ModalContextProps {
-  modal: Modal;
-  setModal: (modal: Modal) => void;
-}
-
 export const ModalContext = createContext({} as ModalContextProps);
 
+export function modalReducer(state: IModalReducerState, action: IModalReducerActions) {
+  const { type, payload } = action;
+
+  switch (type) {
+    case "OPEN_CALENDAR":
+      return { id: payload?.id, category: "Calendar" }
+    case "CLOSE_MODAl":
+      return { id: "", category: "" };
+    default:
+      return state;
+  }
+}
+
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [modal, setModal] = useState<Modal>({ 
-    type: "Calendar", 
-    isOpen: false 
-  });
+  const [state, dispatch] = useReducer(modalReducer, { id: "", category: "" });
+
 
   return (
-    <ModalContext.Provider 
-      value={{ 
-        modal, 
-        setModal 
-      }}
-    >
+    <ModalContext.Provider value={{ state, dispatch }}>
       {children}
     </ModalContext.Provider>
   );

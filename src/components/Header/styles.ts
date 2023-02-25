@@ -36,6 +36,7 @@ export const Navigation = styled.nav<NavigationProps>`
   flex-direction: column;
   justify-content: space-around;
   position: fixed;
+  z-index: 1;
   background-color: #FFF;
   width: 100%;
   left: 0;

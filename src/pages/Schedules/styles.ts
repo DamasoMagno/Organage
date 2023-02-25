@@ -1,39 +1,39 @@
-import { DefaultContainer } from "styles/defaultContainer";
+import { Container } from "styles/container";
 import styled from "styled-components";
 
-export const Content = styled(DefaultContainer)`
+export const Content = styled(Container)`
   main {
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+`;
 
-    .selectTypeEvent {
-      margin-top: 1rem;
-      height: 2rem;
-      background-color: #FFF;
-      display: flex;
-      align-items: center;
-      border-radius: 4px;
-      padding: 0.25rem 0.5rem;
-      border: 1px solid transparent;
+export const ScheduleList = styled.ul`
+  display: flex;
+  flex-direction: column;
 
-      &:focus-within {
-        border-color: #00A3FF;
-      }
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding: 1rem 0;
 
-      select {
-        width: 100%;
-        appearance: none;
-        background-color: transparent;
-        font-size: 1rem;
-        height: 100%;
-        border: 0;
-        outline: 0;
-      }
+    &:last-child {
+      border: 0;
+    }
+    
+    strong {
+      font-size: 1.25rem;
     }
 
-    div {
-      margin-top: 1.5rem;
+    span {
+      color: rgba(0, 0, 0, .8);
     }
   }
 `;
+
+

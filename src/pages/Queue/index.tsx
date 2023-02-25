@@ -1,75 +1,75 @@
 import { useEffect, useState } from "react";
-import { gql } from '@apollo/client';
 
 import { client } from "libs/apollo";
 
+import { IQueue } from "interfaces/IQueue";
+
+import { GET_QUEUE } from "graphql/queries/get-class-queue";
+
 import { Header } from "components/Header";
+import { Skeleton } from "components/Item/SkeletonLoader";
 
 import { Content, ClassPosition } from "./styles";
 
-const GET_QUEUE = gql`
-  query Fila ($id: ID!) {
-    fila(where: {id: $id}) {
-      turma {
-        ... on Turma {
-          id
-          nome
-        }
-      }
-    }
-  }
-`;
-
-interface Queue {
-  id: string;
-  nome: string;
+interface IClass {
+  className: string;
+  queueId: string;
 }
 
+
 export function Queue() {
-  const [queue, setQueue] = useState<Queue[]>([]);
+  const [queue, setQueue] = useState<IQueue[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [ourClass, setOurClass] = useState<IClass>(() => {
+    const classData = JSON.parse(localStorage.getItem("@school") as string);
+
+    if(!classData) {
+      return {}
+    }
+
+    return classData;
+  });
+
 
   useEffect(() => {
     client.query({
       query: GET_QUEUE,
       variables: {
-        id: "clbr6acp90ssc0alwgqt154cv"
+        id: ourClass.queueId
       }
     })
       .then(({ data }) => setQueue(data.fila.turma))
-      .catch(data => console.log(data))
       .finally(() => setLoading(false))
   }, []);
 
-  if (loading) {
-    return <h1>Carregando</h1>
-  }
 
   return (
     <>
       <Header />
-
       <Content>
         <header>
           <h2>Ordem Fila</h2>
         </header>
 
         <main>
-          {queue.map((
-            classInfo: Queue,
-            classPosition: number
-          ) => (
-            <ClassPosition
-              key={classInfo.id}
-              isOwnClass={classInfo.nome === "1º Redes de Computadores"}
-            >
-              <span>{classPosition + 1}</span>
-
-              <p className="class">
-                {classInfo.nome}
-              </p>
-            </ClassPosition>
-          ))}
+          {!loading ? (
+            queue.map((classInfo: IQueue, classPosition: number) => (
+              <ClassPosition
+                key={classInfo.id}
+                isOwnClass={classInfo.nome === ourClass.className}
+              >
+                <span>{classPosition + 1}</span>
+                <p>{classInfo.nome}</p>
+              </ClassPosition>
+            ))
+          ) : (
+            <>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </>
+          )}
         </main>
       </Content>
     </>
