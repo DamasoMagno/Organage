@@ -1,4 +1,3 @@
-import { CalendarModal } from 'components/ReactCalendar';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
