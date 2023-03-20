@@ -4,12 +4,12 @@ import parse from "html-react-parser";
 import { useModal } from "contexts/useModal";
 
 import { client } from "libs/apollo";
-
 import { GET_EVENT_DETAILS } from "graphql/queries/get-event";
 
 import { IEvent } from "interfaces/IEvent";
 
 import { EventContent } from "./styles";
+import { formatHourOfDay } from "utils/format-hour-of-day";
 
 
 export function Calendar() {
@@ -27,18 +27,24 @@ export function Calendar() {
       }
     })
       .then(({ data }) => setEvent(data.evento))
-      .catch(data => console.log(data))
   }, []);
+
+  function showDescriptionDetails() {
+    if (!event.descricao) return
+
+    let markdownToHTMLConverter = parse(event.descricao.html)
+    return markdownToHTMLConverter
+  }
 
   return (
     <EventContent>
       <header>
         <strong>{event.nome}</strong>
-        <time>{new Date(event.createdAt).getHours()}</time>
+        <time>{formatHourOfDay(event.createdAt)}</time>
       </header>
 
       <span>Descrição</span>
-      {parse(event.descricao?.html ?? "")}
+      {showDescriptionDetails()}
     </EventContent>
   );
 }

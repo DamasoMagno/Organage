@@ -6,7 +6,7 @@ import { Calendar } from "./Calendar";
 
 import { Overlay, Content } from "./styles";
 
-export function EventDetailtModal() {
+export function CalendarDetailsModal() {
   const { state, dispatch } = useModal();
 
   function onOpenChangeModal() {
@@ -16,7 +16,10 @@ export function EventDetailtModal() {
   const modalIsOpen = !!state.id;
 
   return (
-    <Modal.Root open={modalIsOpen} onOpenChange={onOpenChangeModal}>
+    <Modal.Root 
+      open={modalIsOpen} 
+      onOpenChange={onOpenChangeModal}
+    >
       <Modal.Portal>
         <Overlay />
 

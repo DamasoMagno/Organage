@@ -1,21 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { Student } from "phosphor-react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { toast } from "react-hot-toast";
+
+import { client } from "libs/apollo";
+import { GET_CLASS } from "graphql/queries/get-class";
+
+import { auth } from "services/firebase";
 
 import { Container, Description, Form } from "./styles";
 
 import googleIcon from "assets/Google.png";
-import { auth } from "services/firebase";
-import { client } from "libs/apollo";
-import { GET_CLASS } from "graphql/queries/get-class";
-
 
 const googleProvider = new GoogleAuthProvider();
 
 export function SignIn() {
   const navigate = useNavigate();
 
-  async function login() {
+  async function signInUser() {
     try {
       const data = await signInWithPopup(auth, googleProvider);
 
@@ -26,17 +28,23 @@ export function SignIn() {
         }
       });
 
-      const className = ownClass.estudante.turma.nome;
-      const queueId = ownClass.estudante.turma.fila.id;
+      const classInfo = {
+        className: ownClass.turmas[0].nome,
+        queueId: ownClass.turmas[0].fila.id
+      }
 
-      localStorage.setItem("@school", JSON.stringify({
-        className,
-        queueId
-      }));
+      localStorage.setItem("@school", JSON.stringify(classInfo));
 
       navigate("/");
     } catch (error) {
-      console.log("Testando!");
+      toast.error(
+        "Aluno não cadastrado no sistema",
+        {
+          duration: 2000,
+          position: 'top-center',
+        }
+      );
+      console.log(error);
     }
   }
 
@@ -52,7 +60,7 @@ export function SignIn() {
       </Description>
 
       <Form>
-        <button onClick={login} type="button">
+        <button onClick={signInUser} type="button">
           <img src={googleIcon} alt="Logotipo Google" />
           Login com Google
         </button>

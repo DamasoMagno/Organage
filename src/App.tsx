@@ -5,12 +5,11 @@ import { Toaster } from "react-hot-toast";
 import { client } from "libs/apollo";
 
 import { ModalProvider } from "contexts/useModal";
+import { AuthProvider } from "contexts/userContext";
 
-import { EventDetailtModal } from "components/DetailsDataModal";
 import { RoutesProvider } from "routes";
 
 import GlobalStyles from "styles/globalCss";
-import { AuthProvider } from "contexts/userContext";
 
 export function App() {
   return (
@@ -19,7 +18,6 @@ export function App() {
         <ApolloProvider client={client}>
           <ModalProvider>
             <RoutesProvider />
-            <EventDetailtModal />
             <Toaster />
             <GlobalStyles />
           </ModalProvider>

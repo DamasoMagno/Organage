@@ -42,21 +42,5 @@ export const ClassPosition = styled.li<ClassPositionProps>`
   }
 `;
 
-export const LoadData = styled.div`
-min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-
-  strong {
-    width: 100px;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    color: #949494;
-    text-align: center;
-  }
-`;
 
 

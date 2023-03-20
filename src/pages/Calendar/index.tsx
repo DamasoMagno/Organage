@@ -1,27 +1,28 @@
 import { useState, useEffect } from "react";
 
-import { client } from "libs/apollo";
+import { IEvent } from "interfaces/IEvent";
 
 import { useModal } from "contexts/useModal";
 
-import { IEvent } from "interfaces/IEvent";
-
+import { client } from "libs/apollo";
 import { GET_CALENDAR } from "graphql/queries/get-calendar";
 
 import { Header } from "components/Header";
 import { Item as Event } from "components/Item";
 import { ReactCalendar } from "components/ReactCalendar";
+import { CalendarDetailsModal } from "components/CalendarDetailsModal";
+import { Loader } from "components/Skeleton";
+
 
 import { Content } from "./styles";
 
 
 export function Calendar() {
   const { dispatch } = useModal();
-  
+
   const [events, setEvents] = useState<IEvent[]>([]);
   const [date, setDate] = useState<string>("");
-
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true)
 
   const [className, setClassName] = useState<string>(() => {
     const school = JSON.parse(localStorage.getItem("@school") as string);
@@ -29,7 +30,12 @@ export function Calendar() {
   });
 
   useEffect(() => {
-    if (!date) return;
+    if (!date) {
+      setLoading(false)
+      return
+    }
+
+    setLoading(true)
 
     client.query({
       query: GET_CALENDAR,
@@ -40,14 +46,14 @@ export function Calendar() {
     })
       .then(({ data }) => {
         if (!data.calendarios.length) {
-          setEvents([]);
-          return;
+          setEvents([])
+          return
         };
 
-        let events = data.calendarios[0].eventos;
-        setEvents(events);
+        let events = data.calendarios[0].eventos
+        setEvents(events)
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false))
   }, [date]);
 
   function handleSelectFormattedDate(newDate: Date) {
@@ -56,9 +62,10 @@ export function Calendar() {
   }
 
   const openCalendarModal = (id?: string) => {
-    if (!id) return;
+    if (!id) return
     dispatch({ type: "OPEN_CALENDAR", payload: { id } })
   }
+
 
   return (
     <>
@@ -69,19 +76,20 @@ export function Calendar() {
         </header>
 
         <main>
-          <ReactCalendar onSelectDate={handleSelectFormattedDate}/>
+          <ReactCalendar onSelectDate={handleSelectFormattedDate} />
 
-          {events.map((event) => (
-            <Event
-              key={event.id}
-              onClick={() => openCalendarModal(event.id)}
-              loading={loading}
-            >
-              {event.nome}
-            </Event>
-          ))}
+          {!loading ?
+            events.map((event) => (
+              <Event key={event.id} onClick={() => openCalendarModal(event.id)}>
+                {event.nome}
+              </Event>
+            )) :
+            <Loader />
+          }
         </main>
       </Content>
+
+      <CalendarDetailsModal />
     </>
   );
 }

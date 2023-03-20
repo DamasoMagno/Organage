@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { client } from "libs/apollo";
-
 import { IQueue } from "interfaces/IQueue";
 
-import { GET_QUEUE } from "graphql/queries/get-class-queue";
+import { client } from "libs/apollo";
+import { GET_QUEUE } from "graphql/queries/get-queue";
 
 import { Header } from "components/Header";
-import { Skeleton } from "components/Item/SkeletonLoader";
+import { Loader } from "components/Skeleton";
 
 import { Content, ClassPosition } from "./styles";
 
@@ -23,12 +22,7 @@ export function Queue() {
 
   const [ourClass, setOurClass] = useState<IClass>(() => {
     const classData = JSON.parse(localStorage.getItem("@school") as string);
-
-    if(!classData) {
-      return {}
-    }
-
-    return classData;
+    return !classData ? {} : classData
   });
 
 
@@ -63,13 +57,7 @@ export function Queue() {
                 <p>{classInfo.nome}</p>
               </ClassPosition>
             ))
-          ) : (
-            <>
-              <Skeleton />
-              <Skeleton />
-              <Skeleton />
-            </>
-          )}
+          ) : <Loader />}
         </main>
       </Content>
     </>

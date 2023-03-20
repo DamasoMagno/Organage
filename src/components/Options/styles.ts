@@ -6,21 +6,27 @@ interface OptionProps {
 
 export const OptionsContainer = styled.div`
   display: flex;
-  align-items: center;
   gap: .5rem;
-  height: 2rem;
   width: 100%;
+  height: 3rem;
   margin-bottom: 1rem;
   overflow-x: scroll;
+
+  > div {
+    margin-top: 0;
+  }
 `;
 
 export const Option = styled.button<OptionProps>`
   background: #FFF;
   border: 0;
+  padding: .5rem;
   border-radius: 8px;
   width: 90px;
-  height: 100%;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
   ${props =>
     props.isSelected &&

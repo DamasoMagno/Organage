@@ -23,7 +23,7 @@ export const Description = styled.section`
     font-size: 1.25rem;
     line-height: 1.85rem;
     margin: 1rem 0 2rem;
-    width: 350px;
+    max-width: 350px;
   }
 `;
 

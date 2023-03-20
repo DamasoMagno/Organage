@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { X, List, SignOut } from "phosphor-react";
 import { Link, useNavigate } from "react-router-dom";
+import { X, List, SignOut } from "phosphor-react";
 import toast from "react-hot-toast";
 import { signOut } from "firebase/auth";
 
@@ -29,7 +29,7 @@ export function Header() {
           duration: 2000,
           position: 'top-center',
         }
-      );
+      )
     }
   }
 
