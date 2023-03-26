@@ -14,7 +14,7 @@ const openModal = keyframes`
 export const Overlay = styled(Modal.Overlay)`
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, .25);
+  background: rgba(0, 0, 0, .85);
 `;
 
 export const Content = styled(Modal.Content)`

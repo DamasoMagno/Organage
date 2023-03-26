@@ -19,7 +19,7 @@ export const Container = styled.button`
   }
 
   & + button {
-    margin-top: 0.5rem;
+    margin-top: .5rem;
   }
 
   &:hover {

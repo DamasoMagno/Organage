@@ -1,4 +1,9 @@
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useReducer
+} from "react";
 
 interface IModalReducerState {
   id?: string;
@@ -23,7 +28,10 @@ interface ModalProviderProps {
 
 export const ModalContext = createContext({} as ModalContextProps);
 
-export function modalReducer(state: IModalReducerState, action: IModalReducerActions) {
+export function modalReducer(
+  state: IModalReducerState,
+  action: IModalReducerActions
+) {
   const { type, payload } = action;
 
   switch (type) {
@@ -38,7 +46,6 @@ export function modalReducer(state: IModalReducerState, action: IModalReducerAct
 
 export function ModalProvider({ children }: ModalProviderProps) {
   const [state, dispatch] = useReducer(modalReducer, { id: "", category: "" });
-
 
   return (
     <ModalContext.Provider value={{ state, dispatch }}>

@@ -21,15 +21,9 @@ export function Header() {
       await signOut(auth);
       localStorage.removeItem("@school");
 
-      navigte("/signIn");
+      navigte("/");
     } catch (error) {
-      toast.error(
-        "Não foi possível sair da sua conta",
-        {
-          duration: 2000,
-          position: 'top-center',
-        }
-      )
+      toast.error("Não foi possível sair da sua conta")
     }
   }
 
@@ -47,7 +41,7 @@ export function Header() {
 
       <Navigation menuIsVisible={mobileScreenIsOpen}>
         <div className="links">
-          <Link to="/">Calendário</Link>
+          <Link to="/calendar">Calendário</Link>
           <Link to="/queue">Ordem Fila</Link>
           <Link to="/schedules">Horário</Link>
         </div>

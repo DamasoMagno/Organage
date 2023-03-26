@@ -10,6 +10,8 @@ interface CalendarModalProps {
 export const ReactCalendar: FC<CalendarModalProps> =
   ({ onSelectDate }) => {
     return (
-      <MainCalendar onChange={onSelectDate} />
+      <MainCalendar 
+        onChange={onSelectDate} 
+      />
     );
   }

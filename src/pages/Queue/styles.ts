@@ -34,7 +34,7 @@ export const ClassPosition = styled.li<ClassPositionProps>`
     justify-content: center;
     gap: .85rem;
     font-size: 1.15rem;
-    padding: .5rem 1rem;
+    padding: 0 1rem;
     border-radius: 8px;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, .15);
     background-color: ${props => !props.isOwnClass ? "#FFF" : "#00A3FF" };

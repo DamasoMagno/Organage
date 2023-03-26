@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { formatHourOfDay } from "utils/format-hour-of-day";
+import { useClassInfo } from "contexts/ClassContext";
 
-import { ISchedule } from "interfaces/ISchedule";
+import { ISchedule } from "interfaces";
 
 import { client } from "libs/apollo";
 import { GET_SCHEDULES_DAYS } from "graphql/queries/get-schedule-days";
@@ -11,10 +13,11 @@ import { Options } from "components/Options";
 
 import { Content, ScheduleList } from "./styles";
 import { Loader } from "components/Skeleton";
-import { formatHourOfDay } from "utils/format-hour-of-day";
 
 
 export function Schedules() {
+  const { classInfo } = useClassInfo()
+
   const [schedules, setSchedules] = useState<ISchedule[]>([])
   const [matters, setMatters] = useState([])
   const [scheduleDaySelected, setScheduleDaySelected] = useState<string>("Terca")
@@ -22,16 +25,11 @@ export function Schedules() {
   const [scheduleDaysLoading, setScheduleDaysLoading] = useState<boolean>(true);
   const [mattersLoading, setMettersLoading] = useState<boolean>(true);
 
-  const [className, setClassName] = useState<string>(() => {
-    const school = JSON.parse(localStorage.getItem("@school") as string);
-    return !school ? {} : school.className;
-  })
-
   useEffect(() => {
     client.query({
       query: GET_SCHEDULES_DAYS,
       variables: {
-        nome_turma: "2º Redes de Computadores"
+        nome_turma: classInfo?.className
       }
     })
       .then(({ data }) => setSchedules(data.horarios))
@@ -44,7 +42,7 @@ export function Schedules() {
     client.query({
       query: GET_SCHEDULES,
       variables: {
-        nome_turma: "2º Redes de Computadores",
+        nome_turma: classInfo?.className,
         dia: scheduleDaySelected
       }
     })

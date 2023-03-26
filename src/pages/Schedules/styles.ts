@@ -6,21 +6,21 @@ export const Content = styled(Container)`
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
   }
 `;
 
 export const ScheduleList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin-top: 2.5rem;
 
   li {
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: .25rem;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-    padding: 1rem 0;
+    height: 3rem;
 
     &:last-child {
       border: 0;

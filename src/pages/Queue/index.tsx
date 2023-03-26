@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import { IQueue } from "interfaces/IQueue";
+import { IQueue } from "interfaces";
 
 import { client } from "libs/apollo";
 import { GET_QUEUE } from "graphql/queries/get-queue";
@@ -9,6 +9,7 @@ import { Header } from "components/Header";
 import { Loader } from "components/Skeleton";
 
 import { Content, ClassPosition } from "./styles";
+import { useClassInfo } from "contexts/ClassContext";
 
 interface IClass {
   className: string;
@@ -17,20 +18,17 @@ interface IClass {
 
 
 export function Queue() {
-  const [queue, setQueue] = useState<IQueue[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const [ourClass, setOurClass] = useState<IClass>(() => {
-    const classData = JSON.parse(localStorage.getItem("@school") as string);
-    return !classData ? {} : classData
-  });
+  const { classInfo } = useClassInfo()
+  
+  const [queue, setQueue] = useState<IQueue[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
 
   useEffect(() => {
     client.query({
       query: GET_QUEUE,
       variables: {
-        id: ourClass.queueId
+        id: String(classInfo?.queueId)
       }
     })
       .then(({ data }) => setQueue(data.fila.turma))
@@ -48,13 +46,13 @@ export function Queue() {
 
         <main>
           {!loading ? (
-            queue.map((classInfo: IQueue, classPosition: number) => (
+            queue.map((classData: IQueue, classPosition: number) => (
               <ClassPosition
-                key={classInfo.id}
-                isOwnClass={classInfo.nome === ourClass.className}
+                key={classData.id}
+                isOwnClass={classData.nome === classInfo?.className}
               >
                 <span>{classPosition + 1}</span>
-                <p>{classInfo.nome}</p>
+                <p>{classData.nome}</p>
               </ClassPosition>
             ))
           ) : <Loader />}

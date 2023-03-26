@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { IEvent } from "interfaces/IEvent";
+import { IEvent } from "interfaces";
 
-import { useModal } from "contexts/useModal";
+import { useModal } from "contexts/ModalContext";
 
 import { client } from "libs/apollo";
 import { GET_CALENDAR } from "graphql/queries/get-calendar";
@@ -15,19 +15,16 @@ import { Loader } from "components/Skeleton";
 
 
 import { Content } from "./styles";
+import { useClassInfo } from "contexts/ClassContext";
 
 
 export function Calendar() {
   const { dispatch } = useModal();
+  const { classInfo } = useClassInfo()
 
   const [events, setEvents] = useState<IEvent[]>([]);
   const [date, setDate] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true)
-
-  const [className, setClassName] = useState<string>(() => {
-    const school = JSON.parse(localStorage.getItem("@school") as string);
-    return !school ? {} : school.className;
-  });
 
   useEffect(() => {
     if (!date) {
@@ -40,7 +37,7 @@ export function Calendar() {
     client.query({
       query: GET_CALENDAR,
       variables: {
-        nome_turma: className,
+        nome_turma: classInfo?.className,
         data: date
       }
     })

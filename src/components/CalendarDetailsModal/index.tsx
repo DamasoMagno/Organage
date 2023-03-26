@@ -1,6 +1,6 @@
 import * as Modal from "@radix-ui/react-dialog";
 
-import { useModal } from "contexts/useModal";
+import { useModal } from "contexts/ModalContext";
 
 import { Calendar } from "./Calendar";
 

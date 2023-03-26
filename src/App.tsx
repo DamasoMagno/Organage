@@ -4,8 +4,8 @@ import { Toaster } from "react-hot-toast";
 
 import { client } from "libs/apollo";
 
-import { ModalProvider } from "contexts/useModal";
-import { AuthProvider } from "contexts/userContext";
+import { ModalProvider } from "contexts/ModalContext";
+import { ClassInfoProvider } from "contexts/ClassContext";
 
 import { RoutesProvider } from "routes";
 
@@ -13,17 +13,20 @@ import GlobalStyles from "styles/globalCss";
 
 export function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <ClassInfoProvider>
           <ModalProvider>
             <RoutesProvider />
-            <Toaster />
+            <Toaster 
+              toastOptions={{ duration: 2500 }}
+              position="top-center"
+            />
             <GlobalStyles />
           </ModalProvider>
-        </ApolloProvider>
-      </AuthProvider>
-    </BrowserRouter>
+        </ClassInfoProvider>
+      </BrowserRouter>
+    </ApolloProvider>
   )
 }
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 
-import { useModal } from "contexts/useModal";
+import { useModal } from "contexts/ModalContext";
 
 import { client } from "libs/apollo";
 import { GET_EVENT_DETAILS } from "graphql/queries/get-event";
 
-import { IEvent } from "interfaces/IEvent";
+import { IEvent } from "interfaces";
 
 import { EventContent } from "./styles";
 import { formatHourOfDay } from "utils/format-hour-of-day";

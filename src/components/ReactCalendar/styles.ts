@@ -3,14 +3,15 @@ import styled from "styled-components";
 
 export const MainCalendar = styled(Calendar)`
   border-radius: 10px;
-  margin: 1rem 0 1.5rem;
+  margin-bottom: 1.5rem;
   border: 0;
   width: 100%;
   overflow: hidden;
 
   .react-calendar__navigation {
     margin-bottom: .25rem;
-    background: #949494;
+    height: 2.5rem;
+    opacity: .8;
     
     span, button {
       color: #FFF;

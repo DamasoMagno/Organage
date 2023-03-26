@@ -2,9 +2,9 @@ import { Skeleton } from "./styles"
 
 export function Loader() {
   return (
-    <>
-      <Skeleton />
-      <Skeleton />
-    </>
+    <div>
+      <Skeleton className="skeleton"/>
+      <Skeleton className="skeleton"/>
+    </div>
   )
 }
