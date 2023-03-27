@@ -39,7 +39,7 @@ export default createGlobalStyle`
     }
   }
 
-  .sc-hKwDye{
+  .sc-hKwDye {
     &[data-state='closed'] {
       animation: ${closeModal} 1s ease-in;
     }

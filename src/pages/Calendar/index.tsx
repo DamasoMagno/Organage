@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { WarningCircle } from "phosphor-react"
 
 import { IEvent } from "interfaces";
 
@@ -12,7 +13,6 @@ import { Item as Event } from "components/Item";
 import { ReactCalendar } from "components/ReactCalendar";
 import { CalendarDetailsModal } from "components/CalendarDetailsModal";
 import { Loader } from "components/Skeleton";
-
 
 import { Content } from "./styles";
 import { useClassInfo } from "contexts/ClassContext";
@@ -63,6 +63,26 @@ export function Calendar() {
     dispatch({ type: "OPEN_CALENDAR", payload: { id } })
   }
 
+  function sowAllEvents() {
+    if (loading) {
+      return <Loader />
+    }
+
+    if (events.length === 0) {
+      return (
+        <div className="noContent">
+          <span>Nenhum Evento Encontrado</span>
+        </div>
+      )
+    }
+
+    return events.map((event) => (
+      <Event key={event.id} onClick={() => openCalendarModal(event.id)}>
+        {event.nome}
+      </Event>
+    ))
+  }
+
 
   return (
     <>
@@ -74,15 +94,7 @@ export function Calendar() {
 
         <main>
           <ReactCalendar onSelectDate={handleSelectFormattedDate} />
-
-          {!loading ?
-            events.map((event) => (
-              <Event key={event.id} onClick={() => openCalendarModal(event.id)}>
-                {event.nome}
-              </Event>
-            )) :
-            <Loader />
-          }
+          {sowAllEvents()}
         </main>
       </Content>
 
