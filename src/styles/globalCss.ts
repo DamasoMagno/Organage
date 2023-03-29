@@ -39,8 +39,8 @@ export default createGlobalStyle`
     }
   }
 
-  .sc-hKwDye {
-    &[data-state='closed'] {
+  @media (max-width: 728px) {
+    .sc-hKwDye[data-state='closed'] {
       animation: ${closeModal} 1s ease-in;
     }
   }

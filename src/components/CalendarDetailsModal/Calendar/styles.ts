@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const EventContent = styled.div`
   header {
-    margin-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;

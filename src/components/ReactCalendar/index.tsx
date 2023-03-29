@@ -11,6 +11,7 @@ export const ReactCalendar: FC<CalendarModalProps> =
   ({ onSelectDate }) => {
     return (
       <MainCalendar 
+        
         onChange={onSelectDate} 
       />
     );

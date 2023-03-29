@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { WarningCircle } from "phosphor-react"
 
 import { IEvent } from "interfaces";
 

@@ -75,5 +75,10 @@ export const Navigation = styled.nav<NavigationProps>`
     gap: 1rem;
     border: 0;
     background: transparent;
+    transition: all 0.2s;
+
+    &:hover {
+      color: rgb(66, 153, 225);
+    }
   }
 `;

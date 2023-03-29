@@ -19,13 +19,21 @@ export const Overlay = styled(Modal.Overlay)`
 
 export const Content = styled(Modal.Content)`
   background: #FFFF;
-  animation: ${openModal} .5s forwards;
   font-family: "Droid Sans", sans-serif;
-  padding: 1rem 1rem 3rem;
   position: fixed;
+  padding: 1rem 1rem 3rem;
   border-radius: 16px 16px 0 0;
   max-width: 500px;
   width: 100%;
+  
+
+  @media(max-width: 728px){
+    animation: ${openModal} .5s forwards;
+
+    div:last-child {
+      margin-top: 3rem;
+    }
+  }
 
   .bar {
     background-color: #EEEEEE;

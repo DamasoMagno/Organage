@@ -7,7 +7,6 @@ export const Content = styled(Container)`
   main {
     margin-top: 1.5rem;
     display: grid;
-    align-items: flex-start;
     gap: .5rem;
 
     @media(min-width: 1024px){
@@ -24,7 +23,7 @@ export const Content = styled(Container)`
       gap: .85rem;
       font-weight: bold;
       opacity: .5;
-      height: 100%;
+      height: 200px;
 
       span {
         width: 150px;
